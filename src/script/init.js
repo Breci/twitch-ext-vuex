@@ -22,7 +22,6 @@ export default {
     this.initConfigurationService();
     this.initOnAuthorized();
     this.initOnContext();
-    this.initGlobalPubSubListeners();
     this.onHighlightChanged();
     this.initOnPositionChanged();
   },
@@ -41,8 +40,6 @@ export default {
     window.Twitch.ext.onAuthorized(async auth => {
       await this.store.dispatch("updateUserInfo");
       if (!this.initialized) {
-        this.setPubSubWhisperListeners(auth.userId);
-
         await this.store.dispatch("loadBitProducts");
         await this.store.dispatch("setChannelId", auth.channelId);
       }
@@ -76,19 +73,5 @@ export default {
     window.Twitch.ext.onHighlightChanged(isHighlighted => {
       this.store.dispatch("updateHighlight", isHighlighted);
     });
-  },
-
-  initGlobalPubSubListeners() {
-    window.Twitch.ext.listen(
-      "broadcast",
-      async (target, contentType, message) => {}
-    );
-  },
-
-  setPubSubWhisperListeners(opaqueId) {
-    window.Twitch.ext.listen(
-      "whisper-" + opaqueId,
-      (target, contentType, message) => {}
-    );
   }
 };
