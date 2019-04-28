@@ -1,6 +1,6 @@
 {
   "name": "twitchext-vuex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Vuex module library for Twitch Extension",
   "main": "lib/index.js",
   "scripts": {
@@ -35,5 +35,18 @@
   "repository": {
     "type" : "git",
     "url" : "https://github.com/Breci/twitch-ext-vuex"
-  }
+  },
+  "keywords": [
+    "es6",
+    "library",
+    "umd",
+    "commonjs",
+    "vuex",
+    "vue",
+    "vuejs",
+    "vue.js",
+    "vuex",
+    "twitch",
+    "twitchext"
+  ]
 }

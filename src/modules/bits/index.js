@@ -3,7 +3,8 @@ import mutations from "./mutations";
 
 let store = {
   state: {
-    bitProducts: []
+    bitProducts: [],
+    hasOngoingBitTransaction: false
   },
   mutations,
   actions,
