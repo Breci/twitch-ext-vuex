@@ -1,21 +1,44 @@
-import UserInfoModule from './userInfo'
-import ChannelInfoModule from './channelInfo'
-import ContextModule from './context'
-import HighlightModule from './highlight'
-import PositionModule from './position'
-import ConfigurationServiceModule from './configurationService'
-import ClientQueryParametersModule from './clientQueryParameters'
-import FeaturesModule from './features'
-import BitsModule from './bits'
+import {
+  UserInfoModule,
+  ChannelInfoModule,
+  ContextModule,
+  ConfigurationServiceModule,
+  ClientQueryParametersModule,
+  BitsModule,
+  FeaturesModule,
+  HighlightModule,
+  PositionModule
+} from "./modules";
+import initScript from "./script/init";
+
+const DefaultStore = {
+  modules: {
+    viewer: UserInfoModule,
+    channel: ChannelInfoModule,
+    context: ContextModule,
+    configuration: ConfigurationServiceModule,
+    queryParams: ClientQueryParametersModule,
+    bits: BitsModule,
+    features: FeaturesModule,
+    highlight: HighlightModule,
+    position: PositionModule
+  }
+};
 
 export {
-    UserInfoModule,
-    ChannelInfoModule,
-    ContextModule,
-    HighlightModule,
-    PositionModule,
-    ConfigurationServiceModule,
-    ClientQueryParametersModule,
-    FeaturesModule,
-    BitsModule
-}
+  DefaultStore,
+  UserInfoModule,
+  ChannelInfoModule,
+  ContextModule,
+  ConfigurationServiceModule,
+  ClientQueryParametersModule,
+  BitsModule,
+  FeaturesModule,
+  HighlightModule,
+  PositionModule
+};
+
+export default {
+  store: DefaultStore,
+  init: initScript.init
+};

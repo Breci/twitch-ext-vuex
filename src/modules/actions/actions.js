@@ -1,8 +1,14 @@
 export default {
-    listen(context,{target,callback}){
-        window.Twitch.ext.listen(target,callback)
-    },
-    unlisten(context,{target,callback}){
-        window.Twitch.ext.unlisten(target,callback)
-    }
-}
+  followChannel(context, channelName) {
+    window.Twitch.ext.actions.followChannel(channelName);
+  },
+  minimize(context) {
+    window.Twitch.ext.actions.minimize();
+  },
+  onFollow(context, callback) {
+    window.Twitch.ext.actions.onFollow(callback);
+  },
+  requestIdShare(context) {
+    window.Twitch.ext.actions.requestIdShare();
+  }
+};

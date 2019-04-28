@@ -1,15 +1,13 @@
-import actions from './actions'
-import mutations from './mutations'
-
+import actions from "./actions";
+import mutations from "./mutations";
 
 let store = {
-    state: {
-        initialized:false,
-        channelId: "",
-    },
-    getters: {
-    },
-    mutations,
-    actions
+  state: {
+    initialized: false,
+    channelId: ""
+  },
+  getters: {},
+  mutations,
+  actions
 };
-export default store
+export default store;
