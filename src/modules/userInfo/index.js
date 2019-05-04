@@ -1,7 +1,7 @@
 import actions from "./actions";
 import mutations from "./mutations";
 
-let store = {
+export const UserInfoModule = {
   state: {
     initialized: false,
     opaqueId: "",
@@ -14,4 +14,3 @@ let store = {
   mutations,
   actions
 };
-export default store;

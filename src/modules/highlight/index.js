@@ -1,12 +1,10 @@
-import actions from './actions'
-import mutations from './mutations'
+import actions from "./actions";
+import mutations from "./mutations";
 
-
-let store = {
-    state: {
-        isHighlighted:false
-    },
-    mutations,
-    actions
+export const HighlightModule = {
+  state: {
+    isHighlighted: false
+  },
+  mutations,
+  actions
 };
-export default store

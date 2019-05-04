@@ -1,7 +1,7 @@
 import actions from "./actions";
 import mutations from "./mutations";
 
-let store = {
+export const FeaturesModule = {
   state: {
     isChatEnabled: false,
     isBitsEnabled: false,
@@ -10,4 +10,3 @@ let store = {
   mutations,
   actions
 };
-export default store;

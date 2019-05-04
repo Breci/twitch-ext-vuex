@@ -1,9 +1,8 @@
 import actions from "./actions";
 import mutations from "./mutations";
 
-let store = {
+export const ActionsModule = {
   state: {},
   mutations,
   actions
 };
-export default store;
