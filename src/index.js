@@ -7,7 +7,9 @@ import {
   BitsModule,
   FeaturesModule,
   HighlightModule,
-  PositionModule
+  PositionModule,
+  PubSubModule,
+  ActionsModule
 } from "./modules";
 import initScript from "./script/init";
 
@@ -21,7 +23,9 @@ const DefaultStore = {
     bits: BitsModule,
     features: FeaturesModule,
     highlight: HighlightModule,
-    position: PositionModule
+    position: PositionModule,
+    pubsub: PubSubModule,
+    actions: ActionsModule
   },
   getters: {
     isExtensionInitialized: state => {
@@ -36,18 +40,9 @@ const DefaultStore = {
   }
 };
 
-export {
-  DefaultStore,
-  UserInfoModule,
-  ChannelInfoModule,
-  ContextModule,
-  ConfigurationServiceModule,
-  ClientQueryParametersModule,
-  BitsModule,
-  FeaturesModule,
-  HighlightModule,
-  PositionModule
-};
+export * from "./modules";
+
+export const linkStoreToHelper = initScript.init;
 
 export default {
   store: DefaultStore,

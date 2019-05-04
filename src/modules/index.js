@@ -7,6 +7,8 @@ import ConfigurationServiceModule from "./configurationService";
 import ClientQueryParametersModule from "./clientQueryParameters";
 import FeaturesModule from "./features";
 import BitsModule from "./bits";
+import PubSubModule from "./pubsub";
+import ActionsModule from "./actions";
 
 export {
   UserInfoModule,
@@ -17,5 +19,7 @@ export {
   ConfigurationServiceModule,
   ClientQueryParametersModule,
   FeaturesModule,
-  BitsModule
+  BitsModule,
+  PubSubModule,
+  ActionsModule
 };
