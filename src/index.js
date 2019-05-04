@@ -40,7 +40,19 @@ const DefaultStore = {
   }
 };
 
-export * from "./modules";
+export {
+  UserInfoModule,
+  ChannelInfoModule,
+  ContextModule,
+  ConfigurationServiceModule,
+  ClientQueryParametersModule,
+  BitsModule,
+  FeaturesModule,
+  HighlightModule,
+  PositionModule,
+  PubSubModule,
+  ActionsModule
+} from "./modules";
 
 export const linkStoreToHelper = initScript.init;
 
