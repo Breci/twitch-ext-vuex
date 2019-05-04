@@ -3,7 +3,6 @@ import mutations from "./mutations";
 
 let store = {
   state: {
-    initialized: false,
     isChatEnabled: false,
     isBitsEnabled: false,
     isSubscriptionStatusAvailable: null

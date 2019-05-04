@@ -27,7 +27,6 @@ export default {
   },
 
   initFeatureFlags() {
-    this.store.dispatch("updateFeatures");
     window.Twitch.ext.features.onChanged(() => {
       this.store.dispatch("updateFeatures");
     });

@@ -22,6 +22,17 @@ const DefaultStore = {
     features: FeaturesModule,
     highlight: HighlightModule,
     position: PositionModule
+  },
+  getters: {
+    isExtensionInitialized: state => {
+      return (
+        state.channel.initialized &&
+        state.configuration.initialized &&
+        state.context.initialized &&
+        state.position.initialized &&
+        state.viewer.initialized
+      );
+    }
   }
 };
 
