@@ -4,7 +4,7 @@ An abstraction of the Twitch Extension helper for VueX
 
 ## Description
 
-This lib allow you to tally abstract the Twitch extension helper for your twitch extension project.
+This lib allow you to abstract the Twitch extension helper for your twitch extension project using Vue / Vuex.
 
 You can easily have a reactive Twitch extension without worrying about all the set up.
 
