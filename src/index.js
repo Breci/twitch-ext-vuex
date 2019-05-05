@@ -13,7 +13,7 @@ import {
 } from "./modules";
 import initScript from "./script/init";
 
-const DefaultStore = {
+const store = {
   modules: {
     viewer: UserInfoModule,
     channel: ChannelInfoModule,
@@ -54,9 +54,18 @@ export {
   ActionsModule
 } from "./modules";
 
+const plugin = {
+  install() {
+    initScript.init();
+  }
+};
+
+export const DefaultStore = store;
 export const linkStoreToHelper = initScript.init;
+export const ExtensionHelperPlugin = plugin;
 
 export default {
-  store: DefaultStore,
-  init: initScript.init
+  store,
+  init: initScript.init,
+  plugin
 };

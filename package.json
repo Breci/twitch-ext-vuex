@@ -1,10 +1,11 @@
 {
   "name": "twitchext-vuex",
-  "version": "0.0.9",
+  "version": "0.0.18",
   "description": "A Vuex module library for Twitch Extension",
   "main": "lib/index.js",
   "scripts": {
     "build": "WEBPACK_ENV=build webpack",
+    "build-dev": " webpack --config webpack.dev.config.js",
     "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch"
   },
   "author": "",
@@ -33,8 +34,8 @@
     "yargs": "^10.1.2"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Breci/twitch-ext-vuex"
+    "type": "git",
+    "url": "https://github.com/Breci/twitch-ext-vuex"
   },
   "keywords": [
     "es6",
@@ -48,5 +49,9 @@
     "vuex",
     "twitch",
     "twitchext"
-  ]
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "core-js": "^2.6.5"
+  }
 }

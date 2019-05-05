@@ -56,14 +56,26 @@ let store = {
 };
 ```
 
-### Initialisation script
+### Link the helper to the store
+
+#### Vue plugin
+
+You can easily link the data with the Vue Plugin
+
+```
+import Vue from "vue"
+import { ExtensionHelperPlugin } from 'twitchext-vuex'
+
+Vue.use(ExtensionHelperPlugin)
+```
+#### Initialisation script
 
 This lib also a script to automatically update the store data from the Twitch Extension helper
 
 ```
 import { linkStoreToHelper } from 'twitchext-vuex'
 
-linkStoreToHelper();
+linkStoreToHelper()
 ```
 
 ## Store description
