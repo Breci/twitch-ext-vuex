@@ -8,10 +8,11 @@ import {
   FeaturesModule,
   HighlightModule,
   PositionModule,
-  PubSubModule,
-  ActionsModule
+  ActionsModule,
+  ExtensionModule
 } from "./modules";
 import initScript from "./script/init";
+import plugin from "./plugin";
 
 const store = {
   modules: {
@@ -24,8 +25,8 @@ const store = {
     features: FeaturesModule,
     highlight: HighlightModule,
     position: PositionModule,
-    pubsub: PubSubModule,
-    actions: ActionsModule
+    actions: ActionsModule,
+    extension: ExtensionModule
   },
   getters: {
     isExtensionInitialized: state => {
@@ -50,22 +51,14 @@ export {
   FeaturesModule,
   HighlightModule,
   PositionModule,
-  PubSubModule,
   ActionsModule
 } from "./modules";
 
-const plugin = {
-  install() {
-    initScript.init();
-  }
-};
-
 export const DefaultStore = store;
-export const linkStoreToHelper = initScript.init;
-export const ExtensionHelperPlugin = plugin;
+export const ExtensionPlugin = plugin;
 
 export default {
   store,
   init: initScript.init,
-  plugin
+  plugin: plugin
 };

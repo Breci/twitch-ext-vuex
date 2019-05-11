@@ -1,16 +1,6 @@
 export default {
-    async loadBitProducts({commit}){
-        const products = await window.Twitch.ext.bits.getProducts()
-        commit('SET_BIT_PRODUCTS',products)
-        return products
-    },
-    async getProducts({state,dispatch}){
-        if (state.bitProducts){
-            return state.bitProducts
-        }
-        else{
-            return dispatch('loadBitProducts')
-        }
+    getProducts(){
+        return window.Twitch.ext.bits.getProducts()
     },
     onTransactionCancelled({dispatch},callback){
       window.Twitch.ext.bits.onTransactionCancelled(()=>{

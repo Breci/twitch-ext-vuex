@@ -17,6 +17,7 @@ export default {
   },
 
   initListeners() {
+    this.initExtensionInfo()
     this.initFeatureFlags();
     this.initClientQueryParams();
     this.initConfigurationService();
@@ -25,6 +26,9 @@ export default {
     this.onHighlightChanged();
     this.initOnPositionChanged();
   },
+    initExtensionInfo(){
+    this.store.dispatch('setExtensionInfo')
+    },
 
   initFeatureFlags() {
     window.Twitch.ext.features.onChanged(() => {
@@ -36,18 +40,17 @@ export default {
   },
 
   initOnAuthorized() {
-    window.Twitch.ext.onAuthorized(async auth => {
-      await this.store.dispatch("updateUserInfo");
+    window.Twitch.ext.onAuthorized( auth => {
+       this.store.dispatch("updateUserInfo");
       if (!this.initialized) {
-        await this.store.dispatch("loadBitProducts");
-        await this.store.dispatch("setChannelId", auth.channelId);
+         this.store.dispatch("setChannelId", auth.channelId);
       }
     });
   },
 
   initOnContext() {
-    window.Twitch.ext.onContext(async (context, contextFields) => {
-      await this.store.dispatch("updateContext", {
+    window.Twitch.ext.onContext( (context, contextFields) => {
+       this.store.dispatch("updateContext", {
         context,
         contextFields
       });
@@ -55,8 +58,8 @@ export default {
   },
 
   initOnPositionChanged() {
-    window.Twitch.ext.onPositionChanged(async position => {
-      await this.store.dispatch("updatePosition", position);
+    window.Twitch.ext.onPositionChanged( position => {
+       this.store.dispatch("updatePosition", position);
     });
   },
 

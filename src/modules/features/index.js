@@ -5,7 +5,7 @@ export const FeaturesModule = {
   state: {
     isChatEnabled: false,
     isBitsEnabled: false,
-    isSubscriptionStatusAvailable: null
+    isSubscriptionStatusAvailable: false
   },
   mutations,
   actions
