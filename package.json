@@ -1,6 +1,6 @@
 {
   "name": "twitchext-vuex",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "A Vuex module library for Twitch Extension",
   "main": "lib/index.js",
   "scripts": {
@@ -54,5 +54,9 @@
     "@babel/polyfill": "^7.4.4",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
+  },
+  "peerDependencies": {
+    "vue": "2.x",
+    "vuex":"3.x"
   }
 }

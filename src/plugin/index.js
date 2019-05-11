@@ -8,6 +8,7 @@ const plugin = {
     store.registerModule(module, DefaultStore);
     initScript.init(store);
     Vue.prototype.$twitchExtension = {
+      // custom
       initialized() {
         return store.getters.isExtensionInitialized();
       },
@@ -71,7 +72,7 @@ const plugin = {
       bits: {
         //custom
         getBitsAmount(sku) {
-          return store.getters.getBitsAmount(sku);
+          return store.dispatch("getBitsAmount", sku);
         },
         //custom
         get hasOngoingBitTransaction() {
@@ -132,102 +133,65 @@ const plugin = {
         }
       },
       context: {
-        initialized: {
-          get value() {
-            return store.state[module].context.initialized;
-          }
+        // custom
+        get initialized() {
+          return store.state[module].context.initialized;
         },
-        arePlayerControlsVisible: {
-          get value() {
-            return store.state[module].context.arePlayerControlsVisible;
-          }
+        get arePlayerControlsVisible() {
+          return store.state[module].context.arePlayerControlsVisible;
         },
-        bitrate: {
-          get value() {
-            return store.state[module].context.bitrate;
-          }
+        get bitrate() {
+          return store.state[module].context.bitrate;
         },
-        bufferSize: {
-          get value() {
-            return store.state[module].context.bufferSize;
-          }
+        get bufferSize() {
+          return store.state[module].context.bufferSize;
         },
-        displayResolution: {
-          get value() {
-            return store.state[module].context.displayResolution;
-          }
+        get displayResolution() {
+          return store.state[module].context.displayResolution;
         },
-        game: {
-          get value() {
-            return store.state[module].context.game;
-          }
+        get game() {
+          return store.state[module].context.game;
         },
-        hlsLatencyBroadcaster: {
-          get value() {
-            return store.state[module].context.hlsLatencyBroadcaster;
-          }
+        get hlsLatencyBroadcaster() {
+          return store.state[module].context.hlsLatencyBroadcaster;
         },
-        hostingInfo: {
-          get value() {
-            return store.state[module].context.hostingInfo;
-          }
+        get hostingInfo() {
+          return store.state[module].context.hostingInfo;
         },
-        isFullScreen: {
-          get value() {
-            return store.state[module].context.isFullScreen;
-          }
+        get isFullScreen() {
+          return store.state[module].context.isFullScreen;
         },
-        isMuted: {
-          get value() {
-            return store.state[module].context.isMuted;
-          }
+        get isMuted() {
+          return store.state[module].context.isMuted;
         },
-        isPaused: {
-          get value() {
-            return store.state[module].context.isPaused;
-          }
+        get isPaused() {
+          return store.state[module].context.isPaused;
         },
-        isTheatreMode: {
-          get value() {
-            return store.state[module].context.isTheatreMode;
-          }
+        get isTheatreMode() {
+          return store.state[module].context.isTheatreMode;
         },
-        language: {
-          get value() {
-            return store.state[module].context.language;
-          }
+        get language() {
+          return store.state[module].context.language;
         },
-        mode: {
-          get value() {
-            return store.state[module].context.mode;
-          }
+        get mode() {
+          return store.state[module].context.mode;
         },
-        playbackMode: {
-          get value() {
-            return store.state[module].context.playbackMode;
-          }
+        get playbackMode() {
+          return store.state[module].context.playbackMode;
         },
-        theme: {
-          get value() {
-            return store.state[module].context.theme;
-          }
+        get theme() {
+          return store.state[module].context.theme;
         },
-        videoResolution: {
-          get value() {
-            return store.state[module].context.videoResolution;
-          }
+        get videoResolution() {
+          return store.state[module].context.videoResolution;
         },
-        volume: {
-          get value() {
-            return store.state[module].context.volume;
-          }
+        get volume() {
+          return store.state[module].context.volume;
         }
       },
       highlight: {
-        isHighlighted: {
-          get value() {
-            return store.state[module].highlight.isHighlighted;
-          }
+        get isHighlighted() {
+          return store.state[module].highlight.isHighlighted;
         }
       },
       features: {
@@ -245,6 +209,7 @@ const plugin = {
         }
       },
       position: {
+        // custom
         get initialized() {
           return store.state[module].position.initialized;
         },
@@ -282,6 +247,7 @@ const plugin = {
         // TODO
       },
       viewer: {
+        // custom
         get initialized() {
           return store.state[module].viewer.initialized;
         },
