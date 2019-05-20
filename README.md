@@ -40,26 +40,6 @@ new Vue({
 });
 ```
 
-### Use a custom module name
-```
-import Vue from "vue";
-import App from "./App";
-import Vuex from "vuex";
-import { ExtensionPlugin } from "twitchext-vuex";
-
-Vue.use(Vuex);
-
-const store = new Vuex.Store();
-
-Vue.use(ExtensionPlugin, { store, module:'extension' });
-
-new Vue({
-  el: "#app",
-  store,
-  render: h => h(App)
-});
-```
-
 You will be able to to access the data as computed values
 ```
 computed(){
@@ -132,6 +112,27 @@ computed:{
 
 
 ## Organize it yourself
+
+
+### Use a custom main module name
+```
+import Vue from "vue";
+import App from "./App";
+import Vuex from "vuex";
+import { ExtensionPlugin } from "twitchext-vuex";
+
+Vue.use(Vuex);
+
+const store = new Vuex.Store();
+
+Vue.use(ExtensionPlugin, { store, module:'extension' });
+
+new Vue({
+  el: "#app",
+  store,
+  render: h => h(App)
+});
+```
 
 ### Vuex modules
 
