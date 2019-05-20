@@ -1,40 +1,35 @@
 export default {
-    async loadBitProducts({commit}){
-        const products = await window.Twitch.ext.bits.getProducts()
-        commit('SET_BIT_PRODUCTS',products)
-        return products
+    getProducts() {
+        return window.Twitch.ext.bits.getProducts()
     },
-    async getProducts({state,dispatch}){
-        if (state.bitProducts){
-            return state.bitProducts
-        }
-        else{
-            return dispatch('loadBitProducts')
-        }
+    onTransactionCancelled({dispatch}, callback) {
+        window.Twitch.ext.bits.onTransactionCancelled(() => {
+            dispatch('setHasOngoingBitTransaction', false)
+            callback();
+        })
     },
-    onTransactionCancelled({dispatch},callback){
-      window.Twitch.ext.bits.onTransactionCancelled(()=>{
-          dispatch('setHasOngoingBitTransaction',false)
-          callback();
-      })  
+    onTransactionComplete({dispatch}, callback) {
+        window.Twitch.ext.bits.onTransactionComplete(() => {
+            dispatch('setHasOngoingBitTransaction', false)
+            callback();
+        })
     },
-    onTransactionComplete({dispatch},callback){
-      window.Twitch.ext.bits.onTransactionComplete(()=>{
-          dispatch('setHasOngoingBitTransaction',false)
-          callback();
-      })  
+    setUseLoopBack({}, setUseLoopBack) {
+        window.Twitch.ext.bits.setUseLoopBack(setUseLoopBack);
     },
-    setUseLoopBack({},setUseLoopBack){
-      window.Twitch.ext.bits.setUseLoopBack(setUseLoopBack);  
+    showBitsBalance() {
+        window.Twitch.ext.bits.showBitsBalance();
     },
-    showBitsBalance(){
-      window.Twitch.ext.bits.showBitsBalance();  
+    useBits({}, sku) {
+        dispatch('setHasOngoingBitTransaction', true)
+        window.Twitch.ext.bits.useBits(sku);
     },
-    useBits({},sku){
-        dispatch('setHasOngoingBitTransaction',true)
-        window.Twitch.ext.bits.useBits(sku);  
+    setHasOngoingBitTransaction({commit}, hasOngoingBitTransaction) {
+        commit('SET_HAS_ONGOING_BIT_TRANSACTION', hasOngoingBitTransaction)
     },
-    setHasOngoingBitTransaction({commit},hasOngoingBitTransaction){
-        commit('SET_HAS_ONGOING_BIT_TRANSACTION',hasOngoingBitTransaction)
+    async getBitsAmount({dispatch}, sku) {
+        const product = await dispatch('getProducts').find(product => product.sku === sku);
+        return product ? product.cost.amount : 0;
     }
+
 }

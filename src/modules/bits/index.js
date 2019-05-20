@@ -9,7 +9,7 @@ export const BitsModule = {
   mutations,
   actions,
   getters: {
-    getBitAmount: state => sku => {
+    getBitsAmount: state => async sku => {
       const product = state.bitProducts.find(product => product.sku === sku);
       return (product && product.cost.amount) || 0;
     }

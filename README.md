@@ -9,109 +9,159 @@ This lib allow you to abstract the Twitch extension helper for your twitch exten
 You can easily have a reactive Twitch extension without worrying about all the set up.
 
 
+## Dependencies
+
+- Vue
+- Vuex
+
 ## How to use
 
-### Use the default store
+### Use the Vue plugin
+By default the store will be accessible on the `twitch` module.
+
+You need to create the store before using it in the plugin.
 
 ```
-import { DefaultStore } from 'twitchext-vuex'
+import Vue from "vue";
+import App from "./App";
+import Vuex from "vuex";
+import { ExtensionPlugin } from "twitchext-vuex";
 
-let vue = new Vue({
+Vue.use(Vuex);
+
+const store = new Vuex.Store();
+
+Vue.use(ExtensionPlugin, { store });
+
+new Vue({
   el: "#app",
-  store: DefaultStore,
+  store,
   render: h => h(App)
 });
-
 ```
 
-### Add to an existing store
+You will be able to to access the data as computed values
 ```
-import { DefaultStore } from 'twitchext-vuex'
-
-let store = {
+computed(){
   ...
-  modules: {
-    twitch: DefaultStore,
+  opaqueId(){
+    return this.$twitchExtension.viewer.id
   }
-};
+}
 ```
 
-You will be able to to access the store in your components with
-```
-this.$store.state.twitch
-```
-
-### Add modules to an existing store
-
-You can also include some specific modules to your store
-
-```
-import { UserInfoModule } from 'twitchext-vuex'
-
-let store = {
-  ...
-  modules: {
-    user: UserInfoModule,
-  }
-};
-```
-
-### Link the helper to the store
-
-#### Vue plugin
-
-You can easily link the data with the Vue Plugin
-
-```
-import Vue from "vue"
-import { ExtensionHelperPlugin } from 'twitchext-vuex'
-
-Vue.use(ExtensionHelperPlugin)
-```
-#### Initialisation script
-
-This lib also a script to automatically update the store data from the Twitch Extension helper
-
-```
-import { linkStoreToHelper } from 'twitchext-vuex'
-
-linkStoreToHelper()
-```
 
 ## Store description
 
-### Modules
+### General data
+
+The data structure is based on the - [Twitch Extension Helper](https://dev.twitch.tv/docs/extensions/reference/#javascript-helper)
+
+You can access the data using the same structure
+```
+...
+computed:{
+  ...
+  opaqueId(){
+    return this.$twitchExtension.viewer.id
+  }
+}
+```
+
+### Custom data
+`isExtensionInitialized` returns a boolean telling you if the data have been loaded on the store. 
+
+#### bits
+`bits.getBitsAmount(sku:string):number` return the bits amount of given sku. Return 0 if the sku doesn't exist.
+
+`bits.hasOngoingBitTransaction:boolean` return if the user has a bits transaction going on. 
 
 #### Channel
+`channel.initialized:boolean` return if the channel information have been set.
 
-#### Query Params
+`id:string` return the channel id of the stream.
 
 #### Configuration Service
+`configuration.initialized:boolean` return if the configuration service has been set.
 
 #### Context
 
-#### Features
+For the default data structure see the [OnContext method](https://dev.twitch.tv/docs/extensions/reference/#javascript-helper).
 
-#### Highlight
+The same structure is used to store the data under the `context` field.
+
+`context.initialized:boolean` return if the context information have been set.
 
 #### Position
+`position.initialized:boolean` return if the position information have been set.
 
-#### PubSub
+#### Viewer
+`viewer.initialized:boolean` return if the viewer information have been set.
 
-#### User
 
-### Getters
-
-`isExtensionInitialized` returns a boolean telling you if the data have been loaded on the store. 
-
+For example :
 ```
 ...
 computed:{
   ...
   isExtensionInitialized(){
-    return this.$store.getters.isExtensionInitialized()
+    return this.$twitchExtension.isExtensionInitialized
   }
 }
+```
+
+
+## Organize it yourself
+
+
+### Use a custom main module name
+```
+import Vue from "vue";
+import App from "./App";
+import Vuex from "vuex";
+import { ExtensionPlugin } from "twitchext-vuex";
+
+Vue.use(Vuex);
+
+const store = new Vuex.Store();
+
+Vue.use(ExtensionPlugin, { store, module:'extension' });
+
+new Vue({
+  el: "#app",
+  store,
+  render: h => h(App)
+});
+```
+
+### Vuex modules
+
+All the modules of the store can be imported independently 
+
+```
+import {
+UserInfoModule,
+  ChannelInfoModule,
+  ContextModule,
+  ConfigurationServiceModule,
+  ClientQueryParametersModule,
+  BitsModule,
+  FeaturesModule,
+  HighlightModule,
+  PositionModule,
+  ActionsModule
+} from 'twitchext-vuex'
+```
+
+
+### Link the helper to the store
+
+This lib also includes a script to automatically update the store data from the Twitch Extension helper
+
+```
+import { LinkHelperToStore } from 'twitchext-vuex'
+
+LinkHelperToStore(store)
 ```
 
 ## Resources
