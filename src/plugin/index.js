@@ -9,7 +9,7 @@ const plugin = {
     initScript.init(store);
     Vue.prototype.$twitchExtension = {
       // custom
-      initialized() {
+      get initialized() {
         return store.getters.isExtensionInitialized();
       },
       get version() {

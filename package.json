@@ -1,6 +1,6 @@
 {
   "name": "twitchext-vuex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Vuex module library for Twitch Extension",
   "main": "lib/index.js",
   "scripts": {
