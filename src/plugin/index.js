@@ -10,7 +10,7 @@ const plugin = {
     Vue.prototype.$twitchExtension = {
       // custom
       get initialized() {
-        return store.getters.isExtensionInitialized();
+        return store.getters.isExtensionInitialized;
       },
       get version() {
         return store.state[module].extension.version;
@@ -37,20 +37,20 @@ const plugin = {
         return store.dispatch("onVisibilityChanged", callback);
       },
       send(target, contentType, message) {
-        return store.dispatch("send", {
+        return store.dispatch("sendPubSubMessage", {
           target,
           contentType,
           message
         });
       },
       listen(target, callback) {
-        return store.dispatch("listen", {
+        return store.dispatch("listenPubSubMessage", {
           target,
           callback
         });
       },
       unlisten(target, callback) {
-        return store.dispatch("unlisten", {
+        return store.dispatch("unlistenPubSubMessage", {
           target,
           callback
         });
@@ -112,13 +112,13 @@ const plugin = {
         get initialized() {
           return store.state[module].configuration.initialized;
         },
-        broadcaster() {
+        get broadcaster() {
           return store.state[module].configuration.broadcaster;
         },
-        developer() {
+        get developer() {
           return store.state[module].configuration.developer;
         },
-        global() {
+        get global() {
           return store.state[module].configuration.global;
         },
         onChanged(callback) {
@@ -238,6 +238,9 @@ const plugin = {
         },
         get state() {
           return store.state[module].queryParams.state;
+        },
+        get legacyComponentDesign() {
+          return store.state[module].queryParams.legacyComponentDesign;
         }
       },
       purchases: {

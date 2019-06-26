@@ -9,6 +9,7 @@ import { FeaturesModule } from "./features";
 import { BitsModule } from "./bits";
 import { ActionsModule } from "./actions";
 import { ExtensionModule } from "./extension";
+import { PubSubModule } from "./pubsub";
 
 export {
   UserInfoModule,
@@ -21,5 +22,6 @@ export {
   FeaturesModule,
   BitsModule,
   ActionsModule,
-  ExtensionModule
+  ExtensionModule,
+  PubSubModule
 };

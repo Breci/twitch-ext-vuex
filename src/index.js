@@ -9,7 +9,8 @@ import {
     FeaturesModule,
     HighlightModule,
     PositionModule,
-    UserInfoModule
+    UserInfoModule,
+    PubSubModule
 } from "./modules";
 import initScript from "./script/init";
 import plugin from "./plugin";
@@ -26,10 +27,12 @@ const store = {
         highlight: HighlightModule,
         position: PositionModule,
         actions: ActionsModule,
-        extension: ExtensionModule
+        extension: ExtensionModule,
+        pubsub: PubSubModule
     },
     getters: {
         isExtensionInitialized: state => {
+            // TODO improve for panel/live config & config, where the position is not called
             return (
                 state.channel.initialized &&
                 state.configuration.initialized &&
@@ -51,7 +54,8 @@ export {
     FeaturesModule,
     HighlightModule,
     PositionModule,
-    ActionsModule
+    ActionsModule,
+    PubSubModule
 } from "./modules";
 
 export const DefaultStore = store;

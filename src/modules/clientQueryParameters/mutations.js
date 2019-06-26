@@ -8,5 +8,6 @@ export default {
         state.platform = urlParams.get("platform");
         state.popout = urlParams.get("popout");
         state.state = urlParams.get("state");
+        state.legacyComponentDesign = urlParams.get("legacyComponentDesign")
     }
 }
