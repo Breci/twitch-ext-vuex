@@ -9,7 +9,7 @@ export default {
         })
     },
     onTransactionComplete({dispatch}, callback) {
-        window.Twitch.ext.bits.onTransactionComplete((transaction) => {
+        window.Twitch.ext.bits.onTransactionComplete(transaction => {
             dispatch('setHasOngoingBitTransaction', false)
             callback(transaction);
         })
@@ -31,5 +31,4 @@ export default {
         const product = await dispatch('getProducts').find(product => product.sku === sku);
         return product ? product.cost.amount : 0;
     }
-
 }

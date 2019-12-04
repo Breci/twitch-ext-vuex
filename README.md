@@ -69,7 +69,6 @@ computed:{
 ```
 
 ### Custom data
-`isExtensionInitialized` returns a boolean telling you if the data have been loaded on the store. 
 
 #### bits
 `bits.getBitsAmount(sku:string):number` return the bits amount of given sku. Return 0 if the sku doesn't exist.
@@ -84,6 +83,12 @@ computed:{
 #### Configuration Service
 `configuration.initialized:boolean` return if the configuration service has been set.
 
+#### Position
+`position.initialized:boolean` return if the position information have been set.
+
+#### Viewer
+`viewer.initialized:boolean` return if the viewer information have been set.
+
 #### Context
 
 For the default data structure see the [OnContext method](https://dev.twitch.tv/docs/extensions/reference/#javascript-helper).
@@ -92,35 +97,15 @@ The same structure is used to store the data under the `context` field.
 
 `context.initialized:boolean` return if the context information have been set.
 
-#### Position
-`position.initialized:boolean` return if the position information have been set.
+#### Query Params
 
-#### Viewer
-`viewer.initialized:boolean` return if the viewer information have been set.
+For the default data structure see the [Query Params doc](https://dev.twitch.tv/docs/extensions/reference/#client-query-parameters).
 
+Use `this.$twitchExtension.queryParams` to access the values. 
 
-For example :
+## Use a custom main module name
+You can use a custom VueX module name to match your project needs
 ```
-...
-computed:{
-  ...
-  isExtensionInitialized(){
-    return this.$twitchExtension.isExtensionInitialized
-  }
-}
-```
-
-
-## Organize it yourself
-
-
-### Use a custom main module name
-```
-import Vue from "vue";
-import App from "./App";
-import Vuex from "vuex";
-import { ExtensionPlugin } from "twitchext-vuex";
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store();
@@ -134,35 +119,11 @@ new Vue({
 });
 ```
 
-### Vuex modules
+## Other frameworks
 
-All the modules of the store can be imported independently 
+### React
+You can use my other package for React : [TwitchExt-React](https://www.npmjs.com/package/twitchext-react) 
 
-```
-import {
-UserInfoModule,
-  ChannelInfoModule,
-  ContextModule,
-  ConfigurationServiceModule,
-  ClientQueryParametersModule,
-  BitsModule,
-  FeaturesModule,
-  HighlightModule,
-  PositionModule,
-  ActionsModule
-} from 'twitchext-vuex'
-```
-
-
-### Link the helper to the store
-
-This lib also includes a script to automatically update the store data from the Twitch Extension helper
-
-```
-import { LinkHelperToStore } from 'twitchext-vuex'
-
-LinkHelperToStore(store)
-```
 
 ## Resources
 - [Twitch Documentation](https://dev.twitch.tv/docs/extensions/reference/#javascript-helper)

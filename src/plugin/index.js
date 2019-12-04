@@ -8,10 +8,6 @@ const plugin = {
     store.registerModule(module, DefaultStore);
     initScript.init(store);
     Vue.prototype.$twitchExtension = {
-      // custom
-      get initialized() {
-        return store.getters.isExtensionInitialized;
-      },
       get version() {
         return store.state[module].extension.version;
       },
