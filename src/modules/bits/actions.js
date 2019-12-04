@@ -9,9 +9,9 @@ export default {
         })
     },
     onTransactionComplete({dispatch}, callback) {
-        window.Twitch.ext.bits.onTransactionComplete(() => {
+        window.Twitch.ext.bits.onTransactionComplete((transaction) => {
             dispatch('setHasOngoingBitTransaction', false)
-            callback();
+            callback(transaction);
         })
     },
     setUseLoopBack({}, setUseLoopBack) {
@@ -20,7 +20,7 @@ export default {
     showBitsBalance() {
         window.Twitch.ext.bits.showBitsBalance();
     },
-    useBits({}, sku) {
+    useBits({dispatch}, sku) {
         dispatch('setHasOngoingBitTransaction', true)
         window.Twitch.ext.bits.useBits(sku);
     },
