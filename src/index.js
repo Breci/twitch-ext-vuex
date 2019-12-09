@@ -16,6 +16,19 @@ import initScript from "./script/init";
 import plugin from "./plugin";
 
 const store = {
+    state:{
+        forceBitsEnabled:false,
+    },
+    actions:{
+        setExtensionForceBitsEnabled(context,value) {
+            context.commit('SET_FORCE_BITS_ENABLED',value)
+        }  
+    },
+    mutations:{
+        SET_FORCE_BITS_ENABLED(state,value){
+            state.forceBitsEnabled = value
+        }
+    },
     modules: {
         viewer: UserInfoModule,
         channel: ChannelInfoModule,
@@ -29,18 +42,6 @@ const store = {
         actions: ActionsModule,
         extension: ExtensionModule,
         pubsub: PubSubModule
-    },
-    getters: {
-        isExtensionInitialized: state => {
-            // TODO improve for panel/live config & config, where the position is not called
-            return (
-                state.channel.initialized &&
-                state.configuration.initialized &&
-                state.context.initialized &&
-                state.position.initialized &&
-                state.viewer.initialized
-            );
-        }
     }
 };
 

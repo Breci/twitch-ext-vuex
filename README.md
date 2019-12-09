@@ -103,6 +103,26 @@ For the default data structure see the [Query Params doc](https://dev.twitch.tv/
 
 Use `this.$twitchExtension.queryParams` to access the values. 
 
+## Values for testing
+When developing your extension, you might want to force some feature flags to true.
+
+These are only meant to make testing easier! Remember to turn these values off when sending to review.
+
+### Force isBitEnabled to true
+
+Set the value
+```
+Vue.use(ExtensionPlugin, { store, settings:{
+  forceFlags:{
+    forceBitsEnabled:true
+  }  
+}});
+```
+Access it
+```
+this.$store.state.forceBitsEnabled
+```
+
 ## Use a custom main module name
 You can use a custom VueX module name to match your project needs
 ```

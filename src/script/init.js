@@ -6,17 +6,26 @@ export default {
   /**
    * Basic initialisation of the VueX store for Twitch Extensions
    * @param store The VueX store instance
+   * @param settings settings for the store
    */
-  init(store) {
+  init(store,settings) {
     if (window.Twitch.ext) {
       this.store = store;
-      this.initListeners();
+      this.initListeners(settings);
     } else {
       throw new TwitchExtensionHelperNotFound();
     }
   },
+  
+  initTestingFlags(settings){
+    const flags = settings.forceFlags
+    if (flags && flags.forceBitsEnabled){
+      this.store.dispatch('setExtensionForceBitsEnabled',flags.forceBitsEnabled)
+    }
+  },
 
-  initListeners() {
+  initListeners(settings) {
+    this.initTestingFlags(settings);
     this.initExtensionInfo()
     this.initFeatureFlags();
     this.initClientQueryParams();
@@ -31,8 +40,15 @@ export default {
     },
 
   initFeatureFlags() {
+    let warned = false;
     window.Twitch.ext.features.onChanged(() => {
-      this.store.dispatch("updateFeatures");
+      if (this.store.state.forceBitsEnabled && !warned){
+        console.warn("TwitchExt-Vuex: You are have forceBitsEnabled turned on, remember to remove it when releasing your extension.")
+        warned = true;
+      }
+      this.store.dispatch("updateFeatures",{
+        forceBitsEnabled: this.store.state.forceBitsEnabled
+      });
     });
   },
   initClientQueryParams() {
