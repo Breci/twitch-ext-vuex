@@ -6,6 +6,6 @@ export default {
     UPDATE_FEATURES(state, forceFlags) {
         state.isChatEnabled = window.Twitch.ext.features.isChatEnabled;
         state.isSubscriptionStatusAvailable = window.Twitch.ext.features.isSubscriptionStatusAvailable;
-        state.isBitsEnabled = ( forceFlags && forceFlags.forceBitsEnabled ) || window.Twitch.ext.features.isBitsEnabled;
+        state.isBitsEnabled = ( forceFlags && forceFlags.forceIsBitsEnabled ) || window.Twitch.ext.features.isBitsEnabled;
     }
 }

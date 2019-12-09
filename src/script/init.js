@@ -19,8 +19,8 @@ export default {
   
   initTestingFlags(settings){
     const flags = settings.forceFlags
-    if (flags && flags.forceBitsEnabled){
-      this.store.dispatch('setExtensionForceBitsEnabled',flags.forceBitsEnabled)
+    if (flags && flags.forceIsBitsEnabled){
+      this.store.dispatch('setExtensionForceIsBitsEnabled',flags.forceIsBitsEnabled)
     }
   },
 
@@ -42,12 +42,12 @@ export default {
   initFeatureFlags() {
     let warned = false;
     window.Twitch.ext.features.onChanged(() => {
-      if (this.store.state.forceBitsEnabled && !warned && this.store.state.queryParams.state !== "testing"){
-        console.warn("TwitchExt-Vuex: You are have forceBitsEnabled turned on, remember to remove it when releasing your extension.")
+      if (this.store.state.forceIsBitsEnabled && !warned && this.store.state.queryParams.state !== "testing"){
+        console.warn("TwitchExt-Vuex: You have the force flag forceIsBitsEnabled activated, remember to disable it when releasing your extension.")
         warned = true;
       }
       this.store.dispatch("updateFeatures",{
-        forceBitsEnabled: this.store.state.forceBitsEnabled
+        forceIsBitsEnabled: this.store.state.forceIsBitsEnabled
       });
     });
   },

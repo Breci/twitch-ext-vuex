@@ -17,16 +17,16 @@ import plugin from "./plugin";
 
 const store = {
     state:{
-        forceBitsEnabled:false,
+        forceIsBitsEnabled:false,
     },
     actions:{
-        setExtensionForceBitsEnabled(context,value) {
-            context.commit('SET_FORCE_BITS_ENABLED',value)
+        setExtensionForceIsBitsEnabled(context,value) {
+            context.commit('SET_FORCE_IS_BITS_ENABLED',value)
         }  
     },
     mutations:{
-        SET_FORCE_BITS_ENABLED(state,value){
-            state.forceBitsEnabled = value
+        SET_FORCE_IS_BITS_ENABLED(state,value){
+            state.forceIsBitsEnabled = value
         }
     },
     modules: {

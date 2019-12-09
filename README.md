@@ -114,13 +114,13 @@ Set the value
 ```
 Vue.use(ExtensionPlugin, { store, settings:{
   forceFlags:{
-    forceBitsEnabled:true
+    forceIsBitsEnabled:true
   }  
 }});
 ```
 Access it
 ```
-this.$store.state.forceBitsEnabled
+this.$store.state.forceIsBitsEnabled
 ```
 
 ## Use a custom main module name
