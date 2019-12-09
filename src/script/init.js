@@ -42,7 +42,7 @@ export default {
   initFeatureFlags() {
     let warned = false;
     window.Twitch.ext.features.onChanged(() => {
-      if (this.store.state.forceBitsEnabled && !warned){
+      if (this.store.state.forceBitsEnabled && !warned && this.store.state.queryParams.state !== "testing"){
         console.warn("TwitchExt-Vuex: You are have forceBitsEnabled turned on, remember to remove it when releasing your extension.")
         warned = true;
       }
