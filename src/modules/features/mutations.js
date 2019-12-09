@@ -1,11 +1,11 @@
 export default {
     /**
      * @param state
-     * @param forceBitsEnabled if true, the value of isBitsEnabled will always be true, used for testing 
+     * @param forceFlags settings to force flags to a specific value
      */
-    UPDATE_FEATURES(state, {forceBitsEnabled}) {
+    UPDATE_FEATURES(state, forceFlags) {
         state.isChatEnabled = window.Twitch.ext.features.isChatEnabled;
         state.isSubscriptionStatusAvailable = window.Twitch.ext.features.isSubscriptionStatusAvailable;
-        state.isBitsEnabled = forceBitsEnabled || window.Twitch.ext.features.isBitsEnabled;
+        state.isBitsEnabled = ( forceFlags && forceFlags.forceBitsEnabled ) || window.Twitch.ext.features.isBitsEnabled;
     }
 }

@@ -1,5 +1,5 @@
 export default {
-    updateFeatures(context) {
-        context.commit('UPDATE_FEATURES')
+    updateFeatures(context,forceFlags) {
+        context.commit('UPDATE_FEATURES',forceFlags)
     }
 }
