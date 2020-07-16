@@ -1,37 +1,21 @@
 {
   "name": "twitchext-vuex",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "description": "A Vuex module library for Twitch Extension",
-  "main": "lib/index.js",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
-    "build": "WEBPACK_ENV=build webpack",
-    "build-dev": " webpack --config webpack.dev.config.js",
-    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch"
+    "build": "microbundle",
+    "dev": "microbundle watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "babel-eslint": "^8.2.6",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "babel-plugin-istanbul": "^5.2.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "chai": "^4.2.0",
-    "cross-env": "^6.0.3",
-    "eslint": "^6.7.2",
-    "eslint-loader": "^3.0.2",
-    "jsdom": "^11.12.0",
-    "jsdom-global": "^3.0.2",
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "yargs": "^10.1.2"
+    "microbundle": "^0.12.3",
+    "vue": "^2.6.11",
+    "vuex": "^3.5.1"
   },
   "repository": {
     "type": "git",
@@ -50,11 +34,6 @@
     "twitch",
     "twitchext"
   ],
-  "dependencies": {
-    "@babel/polyfill": "^7.7.0",
-    "core-js": "^3.4.7",
-    "vue": "^2.6.10"
-  },
   "peerDependencies": {
     "vue": "2.x",
     "vuex": "3.x"

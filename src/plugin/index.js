@@ -4,7 +4,7 @@ import { DefaultStore } from "../index";
 const DEFAULT_MODULE_NAME = "twitch";
 
 const plugin = {
-  install(Vue, { module = DEFAULT_MODULE_NAME, store, settings }) {
+  install(Vue, { module = DEFAULT_MODULE_NAME, store, settings = {} }) {
     store.registerModule(module, DefaultStore);
     initScript.init(store, settings);
     Vue.prototype.$twitchExtension = {
