@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "microbundle": "^0.12.3",
+    "microbundle": "^0.15.1",
     "vue": "^2.6.11",
     "vuex": "^3.5.1"
   },
